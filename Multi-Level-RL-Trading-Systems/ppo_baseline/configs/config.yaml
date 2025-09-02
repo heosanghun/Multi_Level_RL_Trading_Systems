@@ -1,0 +1,139 @@
+# PPO Baseline Configuration
+# Static Multimodal Reinforcement Learning Trading System
+
+# Training Configuration
+training:
+  learning_rate: 3e-4
+  batch_size: 64
+  discount_factor: 0.99
+  episodes: 1000
+  max_steps_per_episode: 1000
+  save_interval: 100
+  eval_interval: 50
+  
+# Model Architecture
+model:
+  # State space dimensions
+  visual_features: 256      # ResNet-18 CNN output
+  technical_features: 15    # Technical indicators
+  sentiment_features: 2     # News sentiment scores
+  total_state_dim: 273      # 256 + 15 + 2
+  
+  # Network architecture
+  hidden_layers: [128, 64]
+  actions: 5                # Strong Buy, Buy, Hold, Sell, Strong Sell
+  
+  # PPO specific parameters
+  ppo_clip_ratio: 0.2
+  value_loss_coef: 0.5
+  entropy_coef: 0.01
+  max_grad_norm: 0.5
+
+# Data Processing
+data:
+  # Candlestick chart settings
+  candlestick_window: 60    # Hours of OHLCV data
+  chart_resolution: [224, 224]  # Image resolution
+  chart_style: "candlestick"
+  
+  # Technical indicators
+  technical_indicators:
+    - "SMA_20"
+    - "SMA_50"
+    - "SMA_200"
+    - "EMA_20"
+    - "EMA_50"
+    - "EMA_200"
+    - "RSI"
+    - "MACD"
+    - "MACD_signal"
+    - "MACD_histogram"
+    - "BB_upper"
+    - "BB_lower"
+    - "BB_middle"
+    - "ATR"
+    - "Volume_SMA"
+  
+  # Sentiment analysis
+  sentiment_window: 24      # Hours for sentiment calculation
+  sentiment_sources:
+    - "news_api"
+    - "cointelegraph"
+    - "coindesk"
+  
+  # Data normalization
+  normalize_technical: true
+  normalize_sentiment: true
+  sentiment_range: [-1, 1]
+
+# Market Regime Detection
+regime:
+  # EMA periods for regime classification
+  ema_periods: [20, 50, 200]
+  
+  # XGBoost parameters
+  xgb_params:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+  
+  # Regime labels
+  regimes:
+    - "bull"
+    - "bear"
+    - "sideways"
+
+# Trading Environment
+trading:
+  initial_capital: 10000
+  transaction_cost: 0.0005  # 0.05% per trade
+  slippage: 0.0002          # 0.02% slippage
+  max_position_size: 0.2    # 20% of capital
+  
+  # Risk management
+  stop_loss: 0.05           # 5% stop loss
+  take_profit: 0.10         # 10% take profit
+  max_drawdown: 0.30        # 30% max drawdown
+
+# Data Sources
+data_sources:
+  # Price data
+  price_source: "binance"   # binance, yfinance, custom
+  
+  # News data
+  news_api_key: "${NEWS_API_KEY}"
+  news_keywords: ["Bitcoin", "BTC", "cryptocurrency", "crypto"]
+  
+  # Technical data
+  technical_source: "calculated"  # calculated, external
+
+# Logging and Output
+logging:
+  level: "INFO"
+  log_file: "logs/ppo_baseline.log"
+  tensorboard_log: "logs/tensorboard/"
+  
+  # Performance metrics
+  metrics:
+    - "sharpe_ratio"
+    - "max_drawdown"
+    - "cumulative_return"
+    - "win_rate"
+    - "profit_factor"
+    - "total_trades"
+
+# Hardware Configuration
+hardware:
+  device: "auto"            # auto, cpu, cuda
+  num_workers: 4
+  pin_memory: true
+  
+# Development
+development:
+  debug: false
+  verbose: true
+  save_intermediate: true
+  checkpoint_dir: "models/checkpoints/"
+  final_model_dir: "models/final/"

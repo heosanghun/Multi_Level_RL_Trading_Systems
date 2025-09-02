@@ -1,0 +1,91 @@
+2025-09-02 11:09:07,463 - root - INFO - PPO Baseline Trading System Starting...
+2025-09-02 11:09:07,463 - root - INFO - Using default configuration
+2025-09-02 11:09:07,464 - src.data_processor - INFO - Data processor initialized with price source: yfinance
+2025-09-02 11:09:07,587 - src.multimodal_fusion - INFO - Candlestick encoder initialized with output_dim=256
+2025-09-02 11:09:07,587 - src.multimodal_fusion - INFO - Technical feature extractor initialized with 15 indicators
+2025-09-02 11:09:07,587 - src.multimodal_fusion - INFO - Sentiment feature extractor initialized with 24h window
+2025-09-02 11:09:07,587 - src.multimodal_fusion - INFO - Multimodal fusion module initialized with total_dim=273
+2025-09-02 11:09:07,588 - src.regime_detector - INFO - Market regime detector initialized with EMA periods: [20, 50, 200]
+2025-09-02 11:09:07,588 - src.trading_env - INFO - Trading environment initialized with capital: $10,000.00
+2025-09-02 11:09:07,588 - src.ppo_agent - INFO - PPO Agent initialized with state_dim=273, action_dim=5
+2025-09-02 11:09:07,588 - src.ppo_baseline - INFO - PPO Baseline system initialized successfully
+2025-09-02 11:09:07,588 - root - INFO - Creating sample data for 7 days...
+2025-09-02 11:09:07,590 - root - INFO - Sample data created: OHLCV 168 rows, Sentiment 43 rows
+2025-09-02 11:09:07,590 - src.ppo_baseline - INFO - Using pre-loaded OHLCV data: 168 records
+2025-09-02 11:09:07,590 - src.ppo_baseline - INFO - Using pre-loaded sentiment data: 43 records
+2025-09-02 11:09:07,599 - src.data_processor - INFO - Data preprocessing completed. OHLCV: 168 rows
+2025-09-02 11:09:07,599 - src.data_processor - INFO - Sentiment: 43 rows
+2025-09-02 11:09:07,599 - src.trading_env - INFO - Data loaded: 168 OHLCV records
+2025-09-02 11:09:07,599 - src.trading_env - INFO - Sentiment data: 43 records
+2025-09-02 11:09:07,600 - src.ppo_baseline - INFO - Data loading completed
+2025-09-02 11:09:07,600 - root - INFO - Running evaluation...
+2025-09-02 11:09:07,600 - root - ERROR - Error during execution: Agent must be trained before evaluation
+2025-09-02 11:09:16,211 - root - INFO - PPO Baseline Trading System Starting...
+2025-09-02 11:09:16,211 - root - INFO - Using default configuration
+2025-09-02 11:09:16,212 - src.data_processor - INFO - Data processor initialized with price source: yfinance
+2025-09-02 11:09:16,305 - src.multimodal_fusion - INFO - Candlestick encoder initialized with output_dim=256
+2025-09-02 11:09:16,305 - src.multimodal_fusion - INFO - Technical feature extractor initialized with 15 indicators
+2025-09-02 11:09:16,305 - src.multimodal_fusion - INFO - Sentiment feature extractor initialized with 24h window
+2025-09-02 11:09:16,306 - src.multimodal_fusion - INFO - Multimodal fusion module initialized with total_dim=273
+2025-09-02 11:09:16,306 - src.regime_detector - INFO - Market regime detector initialized with EMA periods: [20, 50, 200]
+2025-09-02 11:09:16,306 - src.trading_env - INFO - Trading environment initialized with capital: $10,000.00
+2025-09-02 11:09:16,307 - src.ppo_agent - INFO - PPO Agent initialized with state_dim=273, action_dim=5
+2025-09-02 11:09:16,307 - src.ppo_baseline - INFO - PPO Baseline system initialized successfully
+2025-09-02 11:09:16,307 - root - INFO - Creating sample data for 7 days...
+2025-09-02 11:09:16,308 - root - INFO - Sample data created: OHLCV 168 rows, Sentiment 43 rows
+2025-09-02 11:09:16,308 - src.ppo_baseline - INFO - Using pre-loaded OHLCV data: 168 records
+2025-09-02 11:09:16,308 - src.ppo_baseline - INFO - Using pre-loaded sentiment data: 43 records
+2025-09-02 11:09:16,314 - src.data_processor - INFO - Data preprocessing completed. OHLCV: 168 rows
+2025-09-02 11:09:16,314 - src.data_processor - INFO - Sentiment: 43 rows
+2025-09-02 11:09:16,315 - src.trading_env - INFO - Data loaded: 168 OHLCV records
+2025-09-02 11:09:16,315 - src.trading_env - INFO - Sentiment data: 43 records
+2025-09-02 11:09:16,315 - src.ppo_baseline - INFO - Data loading completed
+2025-09-02 11:09:16,315 - root - INFO - Training market regime detector...
+2025-09-02 11:09:16,315 - src.ppo_baseline - INFO - Training market regime detection model...
+2025-09-02 11:09:16,315 - src.regime_detector - WARNING - Insufficient data for ML feature preparation
+2025-09-02 11:09:16,315 - src.regime_detector - ERROR - No valid data for training
+2025-09-02 11:09:16,315 - src.ppo_baseline - WARNING - Regime detector training failed
+2025-09-02 11:09:16,315 - root - INFO - Regime detector training completed: {}
+2025-09-02 11:09:16,315 - root - INFO - Training PPO agent for 10 episodes...
+2025-09-02 11:09:16,315 - src.ppo_baseline - INFO - Starting PPO agent training for 10 episodes...
+2025-09-02 11:09:16,316 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,444 - src.ppo_agent - INFO - PPO update completed - Policy Loss: 0.0708, Value Loss: 0.3622, Clip Fraction: 0.0000
+2025-09-02 11:09:16,445 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,520 - src.ppo_agent - INFO - PPO update completed - Policy Loss: -0.0799, Value Loss: 0.3273, Clip Fraction: 0.0000
+2025-09-02 11:09:16,520 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,596 - src.ppo_agent - INFO - PPO update completed - Policy Loss: 0.0355, Value Loss: 0.4069, Clip Fraction: 0.0000
+2025-09-02 11:09:16,597 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,675 - src.ppo_agent - INFO - PPO update completed - Policy Loss: 0.0302, Value Loss: 0.3952, Clip Fraction: 0.0000
+2025-09-02 11:09:16,675 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,752 - src.ppo_agent - INFO - PPO update completed - Policy Loss: -0.0406, Value Loss: 0.3990, Clip Fraction: 0.0000
+2025-09-02 11:09:16,753 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,833 - src.ppo_agent - INFO - PPO update completed - Policy Loss: 0.0555, Value Loss: 0.3795, Clip Fraction: 0.0000
+2025-09-02 11:09:16,833 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,909 - src.ppo_agent - INFO - PPO update completed - Policy Loss: 0.0272, Value Loss: 0.3992, Clip Fraction: 0.0000
+2025-09-02 11:09:16,910 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:16,987 - src.ppo_agent - INFO - PPO update completed - Policy Loss: -0.0310, Value Loss: 0.2645, Clip Fraction: 0.0000
+2025-09-02 11:09:16,988 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:17,066 - src.ppo_agent - INFO - PPO update completed - Policy Loss: 0.0442, Value Loss: 0.3543, Clip Fraction: 0.0000
+2025-09-02 11:09:17,067 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:17,143 - src.ppo_agent - INFO - PPO update completed - Policy Loss: 0.0051, Value Loss: 0.5523, Clip Fraction: 0.0000
+2025-09-02 11:09:17,143 - src.ppo_baseline - INFO - PPO agent training completed
+2025-09-02 11:09:17,143 - root - INFO - PPO agent training completed. Episodes: 10
+2025-09-02 11:09:17,143 - root - INFO - Running evaluation...
+2025-09-02 11:09:17,143 - src.ppo_baseline - INFO - Starting system evaluation...
+2025-09-02 11:09:17,143 - src.trading_env - INFO - Trading environment initialized with capital: $10,000.00
+2025-09-02 11:09:17,143 - src.trading_env - INFO - Data loaded: 168 OHLCV records
+2025-09-02 11:09:17,143 - src.trading_env - INFO - Sentiment data: 43 records
+2025-09-02 11:09:17,144 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:17,189 - src.ppo_baseline - INFO - Evaluation completed. Total Reward: -16.1138
+2025-09-02 11:09:17,189 - root - INFO - Running backtesting...
+2025-09-02 11:09:17,189 - src.ppo_baseline - INFO - Starting backtesting on 168 records...
+2025-09-02 11:09:17,189 - src.ppo_baseline - INFO - Starting system evaluation...
+2025-09-02 11:09:17,189 - src.trading_env - INFO - Trading environment initialized with capital: $10,000.00
+2025-09-02 11:09:17,190 - src.trading_env - INFO - Data loaded: 168 OHLCV records
+2025-09-02 11:09:17,190 - src.trading_env - INFO - Sentiment data: 43 records
+2025-09-02 11:09:17,190 - src.trading_env - INFO - Environment reset
+2025-09-02 11:09:17,237 - src.ppo_baseline - INFO - Evaluation completed. Total Reward: -16.1138
+2025-09-02 11:09:17,238 - src.ppo_baseline - WARNING - Regime detector not trained, skipping regime analysis
+2025-09-02 11:09:17,238 - src.ppo_baseline - INFO - Backtesting completed
+2025-09-02 11:09:17,238 - root - INFO - Plotting training history...
+2025-09-02 11:09:22,235 - root - INFO - PPO Baseline system execution completed successfully

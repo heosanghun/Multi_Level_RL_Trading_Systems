@@ -1,0 +1,15 @@
+{
+  "total_return": 0.04412812908185626,
+  "sharpe_ratio": 0.47738704671177007,
+  "max_drawdown": 0.04887289046248749,
+  "win_rate": 0.3333333333333333,
+  "final_capital": 104412.81290818563,
+  "num_trades": 60,
+  "strategy": "HybridGRPO with Moving Average Crossover",
+  "parameters": {
+    "initial_capital": 100000,
+    "position_size": 0.1,
+    "ma_short": 5,
+    "ma_long": 20
+  }
+}

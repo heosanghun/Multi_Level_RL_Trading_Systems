@@ -1,0 +1,40 @@
+# Level 1: Basic GRPO Configuration
+
+# Data Configuration
+data:
+  source: "yfinance"  # Data source: yfinance or ccxt
+  symbol: "BTC-USD"   # Trading symbol
+  timeframe: "1d"     # Timeframe: 1h, 1d, 1w
+  start_date: "2024-03-01"
+  end_date: "2024-08-31"
+  features: 64        # Number of features (OHLCV + technical indicators)
+
+# Model Configuration
+model:
+  gru_hidden_size: 128
+  mlp_hidden_layers: [64, 32]
+  action_dim: 3       # buy, hold, sell
+  learning_rate: 3e-4
+  gamma: 0.99         # Discount factor
+  gae_lambda: 0.95    # GAE parameter
+
+# Training Configuration
+training:
+  episodes: 1000
+  batch_size: 64
+  ppo_clip: 0.2
+  value_loss_coef: 0.5
+  entropy_coef: 0.01
+  max_grad_norm: 0.5
+
+# Environment Configuration
+env:
+  commission: 0.0005  # 0.05% commission per trade
+  position_size: 0.2  # Position size as fraction of portfolio
+  initial_balance: 10000
+
+# Backtesting Configuration
+backtest:
+  plot_results: true
+  save_results: true
+  results_dir: "results"

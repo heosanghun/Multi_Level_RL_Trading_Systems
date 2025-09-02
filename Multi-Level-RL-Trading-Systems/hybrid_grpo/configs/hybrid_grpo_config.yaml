@@ -1,0 +1,62 @@
+# Level 2: Hybrid GR²PO Configuration
+
+# Data Configuration
+data:
+  source: "yfinance"  # Data source: yfinance or ccxt
+  symbol: "BTC-USD"   # Trading symbol
+  timeframe: "1h"     # Timeframe: 1h, 1d, 1w
+  start_date: "2024-03-01"
+  end_date: "2024-08-31"
+  features: 64        # Number of features (OHLCV + technical indicators)
+  regime_detection: true
+
+# Model Configuration
+model:
+  # Gated Recurrent Agent
+  gru_agent:
+    gru_hidden_size: 128
+    mlp_hidden_layers: [64, 32]
+    learning_rate: 3e-4
+  
+  # Group Relative Agent
+  group_agent:
+    hidden_size: 128
+    mlp_hidden_layers: [64, 32]
+    learning_rate: 3e-4
+  
+  # Ensemble Configuration
+  ensemble:
+    dynamic_weighting: true
+    weight_decay: 0.01
+    min_weight: 0.1
+
+# Training Configuration
+training:
+  episodes: 1000
+  batch_size: 64
+  ppo_clip: 0.2
+  value_loss_coef: 0.5
+  entropy_coef: 0.01
+  max_grad_norm: 0.5
+  gamma: 0.99
+  gae_lambda: 0.95
+
+# Environment Configuration
+env:
+  commission: 0.0005  # 0.05% commission per trade
+  position_size: 0.2  # Position size as fraction of portfolio
+  initial_balance: 10000
+
+# Market Regime Detection
+regime:
+  classifier: "xgboost"
+  features: ["price_momentum", "volatility", "volume_trend"]
+  update_frequency: "daily"
+  confidence_threshold: 0.7
+
+# Backtesting Configuration
+backtest:
+  plot_results: true
+  save_results: true
+  results_dir: "results"
+  regime_analysis: true

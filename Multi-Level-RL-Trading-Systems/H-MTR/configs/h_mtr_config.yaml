@@ -1,0 +1,78 @@
+# Level 3: H-MTR Configuration
+
+# Data Configuration
+data:
+  source: "yfinance"  # Data source: yfinance or ccxt
+  symbol: "BTC-USD"   # Trading symbol
+  timeframe: "1h"     # Timeframe: 1h, 1d, 1w
+  start_date: "2024-03-01"
+  end_date: "2024-08-31"
+  features: 64        # Number of features (OHLCV + technical indicators)
+  sequence_length: 20 # Sequence length for recurrent networks
+
+# Model Configuration
+model:
+  # Shared Backbone
+  shared_backbone:
+    gru_hidden_size: 256
+    gru_layers: 2
+    dropout: 0.1
+  
+  # Policy Heads
+  policy_heads:
+    master_agent:
+      hidden_size: 128
+      mlp_hidden_layers: [64, 32]
+      learning_rate: 3e-4
+    
+    worker_agents:
+      - name: "trend_follower"
+        hidden_size: 128
+        mlp_hidden_layers: [64, 32]
+        learning_rate: 3e-4
+      - name: "mean_reversion"
+        hidden_size: 128
+        mlp_hidden_layers: [64, 32]
+        learning_rate: 3e-4
+      - name: "volatility_trader"
+        hidden_size: 128
+        mlp_hidden_layers: [64, 32]
+        learning_rate: 3e-4
+
+# Training Configuration
+training:
+  episodes: 1000
+  batch_size: 64
+  ppo_clip: 0.2
+  value_loss_coef: 0.5
+  entropy_coef: 0.01
+  max_grad_norm: 0.5
+  gamma: 0.99
+  gae_lambda: 0.95
+  
+  # EWC Configuration
+  ewc:
+    lambda_factor: 1000.0
+    fisher_samples: 100
+    online: true
+
+# Environment Configuration
+env:
+  commission: 0.0005  # 0.05% commission per trade
+  position_size: 0.2  # Position size as fraction of portfolio
+  initial_balance: 10000
+  risk_free_rate: 0.02
+
+# Multi-Task Configuration
+multi_task:
+  tasks: ["trend_following", "mean_reversion", "volatility_trading"]
+  task_weights: [0.4, 0.3, 0.3]
+  task_scheduling: "round_robin"
+
+# Backtesting Configuration
+backtest:
+  plot_results: true
+  save_results: true
+  results_dir: "results"
+  task_analysis: true
+  risk_metrics: true
